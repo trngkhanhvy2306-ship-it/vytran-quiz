@@ -3,157 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vy &amp; Bé — Mini Quiz Cho Công Chúa</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap"
-    rel="stylesheet"
-  />
+  <title>Bé hiểu Vy đến mức nào?</title>
   <style>
-    :root {
-      --bg-top: #fff9fb;
-      --bg-bottom: #fdeef3;
-      --card-bg: rgba(255, 255, 255, 0.88);
-      --card-border: rgba(244, 182, 203, 0.65);
-      --text-main: #3b232d;
-      --text-muted: #7a5565;
-      --accent: #e56b96;
-      --accent-dark: #c94c79;
-      --accent-soft: #fff0f5;
-      --option-bg: #ffffff;
-      --option-border: #f2d0dc;
-      --option-hover: #fff5f8;
-      --correct-bg: #eefaf3;
-      --correct-border: #5ac28a;
-      --correct-text: #1c6b42;
-      --wrong-bg: #fff0f2;
-      --wrong-border: #ee7a8d;
-      --wrong-text: #9b2c40;
-      --shadow: 0 18px 45px rgba(204, 109, 145, 0.14);
-      --radius-lg: 26px;
-      --radius-md: 16px;
-      --transition: 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    html, body {
-      min-height: 100%;
-    }
-
     body {
-      font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--text-main);
-      background: radial-gradient(circle at top left, #fffdfd 0%, var(--bg-top) 42%, var(--bg-bottom) 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(160deg, #fff5f8 0%, #eef6ff 100%);
+      color: #1f2937;
+      min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 28px 16px 48px;
-      position: relative;
-      overflow-x: hidden;
-      line-height: 1.65;
-    }
-
-    /* Ambient soft glow circles */
-    .ambient-glow {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(75px);
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.55;
-    }
-
-    .glow-1 {
-      width: 320px;
-      height: 320px;
-      background: #ffd6e5;
-      top: -80px;
-      right: -60px;
-    }
-
-    .glow-2 {
-      width: 280px;
-      height: 280px;
-      background: #ffe8ef;
-      bottom: -70px;
-      left: -60px;
-    }
-
-    /* Falling hearts container */
-    #hearts-layer {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 20;
-    }
-
-    .falling-heart {
-      position: absolute;
-      top: -36px;
-      color: #ee6f9c;
-      user-select: none;
-      animation: fallDown linear forwards;
-      filter: drop-shadow(0 4px 10px rgba(229, 107, 150, 0.25));
-    }
-
-    @keyframes fallDown {
-      0% {
-        transform: translateY(-20px) translateX(0) rotate(0deg) scale(0.9);
-        opacity: 0;
-      }
-      12% {
-        opacity: 0.92;
-      }
-      85% {
-        opacity: 0.88;
-      }
-      100% {
-        transform: translateY(105vh) translateX(var(--drift, 24px)) rotate(var(--spin, 28deg)) scale(1.05);
-        opacity: 0;
-      }
+      align-items: center;
+      padding: 20px;
     }
 
     .container {
       width: 100%;
-      max-width: 660px;
-      position: relative;
-      z-index: 2;
+      max-width: 860px;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 16px 40px rgba(31, 41, 55, 0.08);
+      padding: 28px;
     }
 
-    .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
-      padding: 36px 32px;
-      animation: fadeSlideUp 0.42s var(--transition);
+    h1 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 8px;
+      color: #be185d;
     }
 
-    @media (max-width: 540px) {
-      .card {
-        padding: 26px 20px;
-        border-radius: 22px;
-      }
-    }
-
-    @keyframes fadeSlideUp {
-      from {
-        opacity: 0;
-        transform: translateY(14px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 24px;
     }
 
     .screen {
@@ -164,494 +53,242 @@
       display: block;
     }
 
-    /* Start Screen */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--accent-soft);
-      color: var(--accent-dark);
-      border: 1px solid var(--option-border);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .start-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(1.75rem, 4.5vw, 2.3rem);
-      font-weight: 700;
-      color: var(--text-main);
-      line-height: 1.28;
-      margin-bottom: 12px;
-    }
-
-    .start-title span {
-      color: var(--accent-dark);
-      font-style: italic;
-    }
-
-    .start-desc {
-      color: var(--text-muted);
-      font-size: 0.98rem;
-      margin-bottom: 24px;
-    }
-
-    .meta-pills {
+    .progress-bar {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 10px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-
-    .pill {
-      background: #fff;
-      border: 1px solid var(--option-border);
-      border-radius: 999px;
-      padding: 7px 14px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: none;
-      border-radius: var(--radius-md);
-      font-family: inherit;
-      font-size: 0.98rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition);
-    }
-
-    .btn-primary {
-      width: 100%;
-      padding: 15px 24px;
-      background: linear-gradient(135deg, #ee77a1 0%, var(--accent-dark) 100%);
-      color: #fff;
-      box-shadow: 0 10px 24px rgba(201, 76, 121, 0.28);
-    }
-
-    .btn-primary:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 28px rgba(201, 76, 121, 0.34);
-    }
-
-    .btn-primary:active:not(:disabled) {
-      transform: translateY(0);
-    }
-
-    .btn-primary:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-
-    .btn-secondary {
-      padding: 12px 20px;
-      background: #fff;
-      color: var(--text-main);
-      border: 1px solid var(--option-border);
-    }
-
-    .btn-secondary:hover {
-      background: var(--option-hover);
-      transform: translateY(-1px);
-    }
-
-    /* Quiz Header & Progress */
-    .quiz-top {
-      display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 12px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text-muted);
     }
 
-    .score-chip {
-      background: var(--accent-soft);
-      color: var(--accent-dark);
-      padding: 4px 12px;
-      border-radius: 999px;
-      font-size: 0.83rem;
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 8px;
-      background: #f9e2ea;
-      border-radius: 999px;
-      overflow: hidden;
-      margin-bottom: 26px;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 10%;
-      background: linear-gradient(90deg, #f38ab0, var(--accent-dark));
-      border-radius: 999px;
-      transition: width 0.38s ease;
+    .question-box {
+      background: #fdf2f8;
+      border: 1px solid #fbcfe8;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
     }
 
     .question-text {
-      font-size: clamp(1.12rem, 3vw, 1.32rem);
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 20px;
-      line-height: 1.48;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 14px;
     }
 
-    .options-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 24px;
+    .options {
+      display: grid;
+      gap: 10px;
     }
 
     .option-btn {
-      width: 100%;
       text-align: left;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 16px;
-      background: var(--option-bg);
-      border: 1.5px solid var(--option-border);
-      border-radius: var(--radius-md);
-      font-family: inherit;
-      font-size: 0.96rem;
-      color: var(--text-main);
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1.5px solid #e5e7eb;
+      background: #ffffff;
+      font-size: 15px;
       cursor: pointer;
-      transition: all var(--transition);
+      transition: all 0.2s ease;
     }
 
-    .option-btn:hover:not(:disabled) {
-      background: var(--option-hover);
-      border-color: #e99ab6;
-      transform: translateX(3px);
+    .option-btn:hover {
+      border-color: #ec4899;
+      background: #fff1f7;
     }
 
-    .option-btn:disabled {
-      cursor: default;
-    }
-
-    .option-key {
-      flex-shrink: 0;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 0.84rem;
-      font-weight: 700;
-      background: var(--accent-soft);
-      color: var(--accent-dark);
-      transition: all var(--transition);
-    }
-
-    .option-label {
-      flex: 1;
-      line-height: 1.45;
-    }
-
-    .option-btn.correct {
-      background: var(--correct-bg);
-      border-color: var(--correct-border);
-      color: var(--correct-text);
-    }
-
-    .option-btn.correct .option-key {
-      background: var(--correct-border);
-      color: #fff;
-    }
-
-    .option-btn.wrong {
-      background: var(--wrong-bg);
-      border-color: var(--wrong-border);
-      color: var(--wrong-text);
-    }
-
-    .option-btn.wrong .option-key {
-      background: var(--wrong-border);
-      color: #fff;
-    }
-
-    .option-btn.dimmed {
-      opacity: 0.52;
-    }
-
-    /* Result & Letter Screen */
-    .result-header {
-      text-align: center;
-      margin-bottom: 26px;
-    }
-
-    .result-score-badge {
-      display: inline-block;
-      background: var(--accent-soft);
-      color: var(--accent-dark);
-      border: 1px solid var(--option-border);
-      padding: 6px 16px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-    }
-
-    .result-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(1.6rem, 4vw, 2.05rem);
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 8px;
-    }
-
-    .result-sub {
-      color: var(--text-muted);
-      font-size: 0.96rem;
-    }
-
-    .letter-box {
-      background: #fffdfd;
-      border: 1px solid #f4cad9;
-      border-radius: 22px;
-      padding: 28px 26px;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8), 0 12px 28px rgba(229, 107, 150, 0.08);
-      margin-bottom: 24px;
-      position: relative;
-    }
-
-    @media (max-width: 540px) {
-      .letter-box {
-        padding: 22px 18px;
-      }
-    }
-
-    .letter-heading {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-style: italic;
-      font-size: 1.32rem;
+    .option-btn.selected {
+      border-color: #db2777;
+      background: #fce7f3;
       font-weight: 600;
-      color: var(--accent-dark);
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px dashed #f3cad8;
     }
 
-    .letter-body p {
-      font-size: 0.98rem;
-      color: var(--text-main);
-      margin-bottom: 14px;
-      white-space: pre-line;
-    }
-
-    .letter-body p:last-child {
-      margin-bottom: 0;
-    }
-
-    .letter-sign {
-      margin-top: 18px;
-      padding-top: 14px;
-      border-top: 1px dashed #f3cad8;
-      text-align: right;
-      font-family: 'Playfair Display', Georgia, serif;
-      font-style: italic;
-      font-size: 1.08rem;
-      font-weight: 600;
-      color: var(--accent-dark);
-    }
-
-    .result-actions {
+    .actions {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
       gap: 12px;
-      justify-content: center;
+      margin-top: 16px;
       flex-wrap: wrap;
     }
-    .journey-wrap { max-width: 760px; margin: 24px auto; padding: 24px; border-radius: 24px; background: #fff; box-shadow: 0 12px 32px rgba(225, 29, 72, 0.08); text-align: center; }
-.journey-tag { display: inline-block; padding: 4px 12px; border-radius: 999px; background: #ffe4e6; color: #be123c; font-size: 12px; font-weight: 700; }
-.journey-header h2 { margin: 10px 0 6px; font-size: clamp(20px, 3vw, 26px); color: #881337; }
-.journey-header p { margin: 0 0 16px; color: #9f1239; font-size: 15px; }
-.journey-svg { width: 100%; height: auto; display: block; border-radius: 20px; }
-.plane-interactive { cursor: pointer; outline: none; }
-.plane-pulse { transform-box: fill-box; transform-origin: center; animation: planePulse 1.8s ease-in-out infinite; }
-@keyframes planePulse { 0%, 100% { transform: scale(0.95); opacity: 0.22; } 50% { transform: scale(1.22); opacity: 0.06; } }
-.journey-footer { margin-top: 14px; min-height: 44px; }
-.arrival-text { margin: 0 0 10px; font-size: 16px; color: #9d174d; }
-.replay-flight-btn { padding: 8px 16px; border: none; border-radius: 999px; background: #f43f5e; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
+
+    .btn {
+      padding: 11px 18px;
+      border-radius: 12px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: #ec4899;
+      color: #ffffff;
+    }
+
+    .btn-secondary {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .result-box {
+      text-align: center;
+      padding: 20px;
+      border-radius: 16px;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      margin-bottom: 20px;
+    }
+
+    .result-score {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0369a1;
+      margin: 8px 0;
+    }
+
+    /* Chặng cuối */
+    .journey-wrap {
+      margin-top: 16px;
+    }
+
+    .journey-stage {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+    }
+
+    #flight-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    #plane-btn {
+      cursor: pointer;
+    }
+
+    .flight-hint {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #4b5563;
+      text-align: center;
+    }
+
+    .arrival-message {
+      margin-top: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #be185d;
+      text-align: center;
+      min-height: 22px;
+    }
   </style>
 </head>
-<bod<div style="text-align: center; margin-top: 16px;">
-  <button id="open-journey-btn" type="button" style="padding: 10px 20px; border: none; border-radius: 999px; background: #e11d48; color: #fff; font-weight: 600; cursor: pointer;">
-    Sang trang cuối (Ntran → Kvy) ✈️
-  </button>
-</div>
-
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
-  <div id="hearts-layer" aria-hidden="true"></div>
-
+<body>
   <main class="container">
-    <!-- Start Screen -->
-    <section id="start-screen" class="card screen active">
-      <div class="badge">Vy &amp; Bé • 10 Câu Hỏi Nhỏ</div>
-      <h1 class="start-title">Bé hiểu <span>Vy</span> đến mức nào?</h1>
-      <p class="start-desc">
-        Một trò chơi nhỏ xíu Vy làm riêng cho bé. Trả lời xong cả 10 câu sẽ có một bức thư nhỏ Vy viết cho công chúa ở cuối nhé.
-      </p>
-      <div class="meta-pills">
-        <span class="pill">10 câu hỏi</span>
-        <span class="pill">Dành riêng cho bé</span>
-        <span class="pill">Có thư ở cuối</span>
+    <h1>Bé hiểu Vy đến mức nào?</h1>
+    <p class="subtitle">Hoàn thành trắc nghiệm để mở chặng bay tới gặp Kvy nhé!</p>
+
+    <!-- Màn hình trắc nghiệm -->
+    <section id="quiz-screen" class="screen active">
+      <div class="progress-bar">
+        <span id="question-counter">Câu 1 / 3</span>
+        <span id="score-counter">Điểm: 0</span>
       </div>
-      <button id="start-btn" class="btn btn-primary" type="button">
-        Bắt đầu chơi cùng Vy
-      </button>
+
+      <div class="question-box">
+        <div id="question-text" class="question-text"></div>
+        <div id="options-list" class="options"></div>
+      </div>
+
+      <div class="actions">
+        <button id="next-btn" class="btn btn-primary" type="button" disabled>Câu tiếp theo</button>
+        <button id="open-journey-btn" class="btn btn-secondary" type="button">Đi tới chặng cuối</button>
+      </div>
     </section>
 
-    <!-- Quiz Screen -->
-    <section id="quiz-screen" class="card screen">
-      <div class="quiz-top">
-        <span id="question-counter">Câu 1 / 10</span>
-        <span id="live-score" class="score-chip">Đúng: 0/10</span>
-      </div>
-      <div class="progress-track">
-        <div id="progress-fill" class="progress-fill"></div>
+    <!-- Màn hình kết quả & chặng cuối -->
+    <section id="journey-screen" class="screen">
+      <div class="result-box">
+        <div>Tổng kết của bé</div>
+        <div id="final-score" class="result-score">0 / 3</div>
+        <p id="result-comment">Bấm máy bay để Ntran bay tới đứng kế Kvy nào!</p>
       </div>
 
-      <h2 id="question-text" class="question-text"></h2>
-      <div id="options-list" class="options-list"></div>
+      <div id="journey-scene" class="journey-wrap">
+        <div class="journey-stage">
+          <svg id="flight-svg" viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#e0f2fe" />
+                <stop offset="100%" stop-color="#fdf2f8" />
+              </linearGradient>
+              <linearGradient id="routeGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#ec4899" />
+                <stop offset="100%" stop-color="#3b82f6" />
+              </linearGradient>
+            </defs>
 
-      <button id="next-btn" class="btn btn-primary" type="button" disabled>
-        Câu tiếp theo
-      </button>
-    </section>
+            <rect x="0" y="0" width="800" height="340" rx="20" fill="url(#skyGrad)" />
 
-    <!-- Result & Letter Screen -->
-    <section id="result-screen" class="card screen">
-      <div class="result-header">
-        <div id="final-score-badge" class="result-score-badge">Bé trả lời đúng 0/10 câu</div>
-        <h2 id="result-title" class="result-title">Thư dành cho công chúa</h2>
-        <p id="result-sub" class="result-sub"></p>
-      </div>
+            <path
+              id="flight-path"
+              d="M 115 235 Q 400 45 685 235"
+              fill="none"
+              stroke="url(#routeGrad)"
+              stroke-width="3.5"
+              stroke-dasharray="9 9"
+              stroke-linecap="round"
+              opacity="0.85"
+            />
 
-      <article class="letter-box">
-        <div class="letter-heading">Bức thư dành cho công chúa</div>
-        <div class="letter-body">
-          <p>chào bạn nhỏ của Vy!
-bé có vui khi thấy món quà này không hả
-hihihi Vy thươngg embee nhắm oaa lần đầu tiên tui làm chỵn nì luônn oaa mắc cỡ quá đii à</p>
-          <p>Cảm ơn em vì đã xuất hiện và đồng hành cùng Vy trong khoảng thời gian vừa qua. Vy biết đôi lúc mình không dễ chiều, hay suy nghĩ nhiều, có những lúc giận dỗi hoặc không biết cách thể hiện cảm xúc. Nhưng Vy luôn trân trọng mối quan hệ này và những gì cả hai đang có.</p>
-          <p>Vy không mong tình yêu của chúng ta lúc nào cũng vui vẻ hay không có cãi vã. Chỉ mong khi có vấn đề, cả hai có thể bình tĩnh nói chuyện, hiểu nhau hơn thay vì im lặng hay buông bỏ.</p>
-          <p>Vy cũng không biết tương lai sẽ như thế nào, nhưng ở hiện tại, Vy vẫn muốn có em trong những dự định sắp tới. Muốn cùng em trải nghiệm nhiều điều mới, đi nhiều nơi, tạo thêm nhiều kỷ niệm và cùng nhau trưởng thành.</p>
+            <!-- Nhân vật Ntran -->
+            <g id="ntran-group" transform="translate(115, 235)">
+              <circle cx="0" cy="-46" r="17" fill="#ffd6e0" stroke="#e11d48" stroke-width="2" />
+              <circle cx="-5.5" cy="-47" r="2" fill="#1f2937" />
+              <circle cx="5.5" cy="-47" r="2" fill="#1f2937" />
+              <path d="M -5 -40 Q 0 -35 5 -40" fill="none" stroke="#be123c" stroke-width="2" />
+              <rect x="-14" y="-26" width="28" height="28" rx="8" fill="#fb7185" />
+              <rect x="-34" y="12" width="68" height="26" rx="12" fill="#ffffff" stroke="#fda4af" />
+              <text x="0" y="30" text-anchor="middle" font-size="13" font-weight="600" fill="#9f1239">Ntran</text>
+            </g>
+
+            <!-- Nhân vật Kvy -->
+            <g id="kvy-group" transform="translate(685, 235)">
+              <circle cx="0" cy="-46" r="17" fill="#dbeafe" stroke="#2563eb" stroke-width="2" />
+              <circle cx="-5.5" cy="-47" r="2" fill="#1f2937" />
+              <circle cx="5.5" cy="-47" r="2" fill="#1f2937" />
+              <path d="M -5 -40 Q 0 -35 5 -40" fill="none" stroke="#1d4ed8" stroke-width="2" />
+              <rect x="-14" y="-26" width="28" height="28" rx="8" fill="#60a5fa" />
+              <rect x="-34" y="12" width="68" height="26" rx="12" fill="#ffffff" stroke="#93c5fd" />
+              <text x="0" y="30" text-anchor="middle" font-size="13" font-weight="600" fill="#1e40af">Kvy</text>
+            </g>
+
+            <!-- Máy bay di chuyển dọc đường bay -->
+            <g id="plane-btn" transform="translate(115, 235)">
+              <g id="plane-rotator" transform="rotate(0)">
+                <circle class="plane-pulse" cx="0" cy="0" r="22" fill="#ec4899" opacity="0.16" />
+                <polygon points="18,0 -12,-11 -6,0 -12,11" fill="#ec4899" stroke="#ffffff" stroke-width="1.5" />
+              </g>
+            </g>
+          </svg>
         </div>
-        <div class="letter-sign">— Của bé, Khánh Vy ♡</div>
-      </article>
 
-      <div class="result-actions">
-        <button id="replay-btn" class="btn btn-secondary" type="button">
-          Chơi lại từ đầu
-        </button><button id="open-journey-btn" type="button" class="btn btn-primary" style="margin-left: 8px;">
-    Chặng cuối (Ntran → Kvy) ✈️
-  </button>
-</div>
-</section>
+        <p id="flight-hint" class="flight-hint">Bấm vào máy bay để bắt đầu chuyến bay tới Kvy!</p>
+        <div id="arrival-message" class="arrival-message"></div>
 
-<section id="journey-scene" class="journey-wrap" style="display: none;" aria-label="Hành trình từ Ntran đến Kvy">
-  <div class="journey-header">
-    <span class="journey-tag">CHẶNG CUỐI</span>
-    <h2>Một chuyến bay nhỏ nối từ Ntran đến Kvy ✈️</h2>
-    <p id="flight-hint">Bấm vào chiếc máy bay để cất cánh nha bé ✨</p>
-  </div>
-
-  <div class="journey-stage">
-    <svg id="flight-svg" viewBox="0 0 800 340" class="journey-svg" role="img" aria-label="Bức tranh Ntran ở đầu và Kvy ở cuối với máy bay di chuyển">
-      <defs>
-        <linearGradient id="skyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#fff0f6" />
-          <stop offset="55%" stop-color="#fff7ed" />
-          <stop offset="100%" stop-color="#fce7f3" />
-        </linearGradient>
-        <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#f43f5e" />
-          <stop offset="100%" stop-color="#ec4899" />
-        </linearGradient>
-        <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#be185d" flood-opacity="0.16" />
-        </filter>
-      </defs>
-
-      <rect x="0" y="0" width="800" height="340" rx="24" fill="url(#skyGrad)" />
-      <circle cx="150" cy="70" r="26" fill="#ffffff" opacity="0.75" />
-      <circle cx="175" cy="74" r="20" fill="#ffffff" opacity="0.75" />
-      <circle cx="630" cy="62" r="24" fill="#ffffff" opacity="0.7" />
-      <circle cx="652" cy="66" r="18" fill="#ffffff" opacity="0.7" />
-
-      <path d="M0 285 Q200 268 400 285 T800 282 L800 340 L0 340 Z" fill="#ffe4e6" opacity="0.75" />
-
-      <path
-        id="flight-path"
-        d="M 115 205 Q 400 45 685 205"
-        fill="none"
-        stroke="url(#routeGrad)"
-        stroke-width="3.5"
-        stroke-dasharray="9 9"
-        stroke-linecap="round"
-        opacity="0.85"
-      />
-
-      <g id="ntran-group" transform="translate(115, 235)" filter="url(#softShadow)"></g>
-        <circle cx="0" cy="-46" r="17" fill="#ffd6e0" stroke="#e11d48" stroke-width="2.2" />
-        <path d="M-16 -50 Q0 -68 16 -50 Q12 -60 0 -60 Q-12 -60 -16 -50 Z" fill="#be123c" />
-        <circle cx="-5.5" cy="-46" r="2" fill="#1f2937" />
-        <circle cx="5.5" cy="-46" r="2" fill="#1f2937" />
-        <path d="M-4 -40 Q0 -36 4 -40" fill="none" stroke="#be123c" stroke-width="1.8" stroke-linecap="round" />
-        <path d="M-14 -26 Q0 -31 14 -26 L18 6 L-18 6 Z" fill="#fb7185" stroke="#e11d48" stroke-width="2" stroke-linejoin="round" />
-        <rect x="-38" y="14" width="76" height="28" rx="14" fill="#ffffff" stroke="#fda4af" stroke-width="1.5" />
-        <text x="0" y="33" text-anchor="middle" font-size="13" font-weight="700" fill="#be123c">Ntran</text>
-      </g>
-
-      <g transform="translate(685, 235)" filter="url(#softShadow)">
-        <circle cx="0" cy="-46" r="17" fill="#ffe4e6" stroke="#db2777" stroke-width="2.2" />
-        <path d="M-16 -50 Q0 -69 16 -50 Q11 -61 0 -61 Q-11 -61 -16 -50 Z" fill="#9d174d" />
-        <circle cx="-5.5" cy="-46" r="2" fill="#1f2937" />
-        <circle cx="5.5" cy="-46" r="2" fill="#1f2937" />
-        <path d="M-4 -40 Q0 -36 4 -40" fill="none" stroke="#9d174d" stroke-width="1.8" stroke-linecap="round" />
-        <path d="M-14 -26 Q0 -31 14 -26 L18 6 L-18 6 Z" fill="#f472b6" stroke="#db2777" stroke-width="2" stroke-linejoin="round" />
-        <rect x="-34" y="14" width="68" height="28" rx="14" fill="#ffffff" stroke="#f9a8d4" stroke-width="1.5" />
-        <text x="0" y="33" text-anchor="middle" font-size="13" font-weight="700" fill="#9d174d">Kvy</text>
-      </g>
-
-      <g id="plane-btn" class="plane-interactive" transform="translate(115, 205)" filter="url(#softShadow)" tabindex="0" role="button" aria-label="Bấm để máy bay bay từ Ntran đến Kvy">
-        <circle class="plane-pulse" cx="0" cy="0" r="28" fill="#fb7185" opacity="0.18" />
-        <g id="plane-rotator">
-          <path d="M-22 2 L14 -5 L26 0 L14 5 L-22 2 Z" fill="#ffffff" stroke="#e11d48" stroke-width="2" stroke-linejoin="round" />
-          <path d="M-6 -2 L-16 -15 L-7 -15 L4 -2 Z" fill="#fda4af" stroke="#e11d48" stroke-width="1.6" stroke-linejoin="round" />
-          <path d="M-6 2 L-16 14 L-7 14 L4 2 Z" fill="#fecdd3" stroke="#e11d48" stroke-width="1.6" stroke-linejoin="round" />
-          <path d="M-20 1 L-27 -7 L-21 -7 L-15 1 Z" fill="#fb7185" stroke="#e11d48" stroke-width="1.5" stroke-linejoin="round" />
-          <circle cx="8" cy="0" r="2.2" fill="#e11d48" />
-        </g>
-      </g>
-    </svg>
-  </div>
-
-  <div class="journey-footer">
-    <p id="arrival-message" class="arrival-text" hidden>
-      Máy bay đã hạ cánh an toàn từ <strong>Ntran</strong> tới <strong>Kvy</strong> rồi nè! 💕
-    </p>
-    <button id="replay-flight-btn" type="button" class="replay-flight-btn" hidden>
-      Bay lại lần nữa
-    </button>
-  </div>
-</section>
+        <div class="actions">
+          <button id="replay-flight-btn" class="btn btn-secondary" type="button">Bay lại lần nữa</button>
+          <button id="replay-btn" class="btn btn-primary" type="button">Làm lại trắc nghiệm</button>
+        </div>
       </div>
     </section>
   </main>
@@ -659,381 +296,195 @@ hihihi Vy thươngg embee nhắm oaa lần đầu tiên tui làm chỵn nì luô
   <script>
     const questions = [
       {
-        question: "Câu 1: Ngày đặc biệt của hai đứa là ngày nào?",
-        options: {
-          A: "20/12/2025",
-          B: "22/12/2025",
-          C: "24/12/2025",
-          D: "25/12/2025"
-        },
-        correct: ["B"]
+        question: "Câu 1: Món đồ uống yêu thích của Vy là gì?",
+        options: ["Trà sữa", "Cà phê đá", "Nước cam", "Matcha latte"],
+        answer: 0
       },
       {
-        question: "Câu 2: Bé thích điều gì nhất ở Vy?",
-        options: {
-          A: "Giọng nói và cách quan tâm",
-          B: "Những lúc nhõng nhẽo đáng yêu",
-          C: "Sự chân thành của Vy",
-          D: "Tất cả"
-        },
-        correct: ["D"]
+        question: "Câu 2: Vy thích đi chơi ở đâu vào cuối tuần?",
+        options: ["Quán cà phê yên tĩnh", "Trung tâm thương mại", "Công viên dạo mát", "Ở nhà xem phim"],
+        answer: 2
       },
       {
-        question: "Câu 3: Vy thường giận bé vì điều gì nhất?",
-        options: {
-          A: "Trả lời tin nhắn chậm",
-          B: "Không quan tâm",
-          C: "Hay quên lời hứa",
-          D: "Không tinh tế"
-        },
-        correct: ["C"]
-      },
-      {
-        question: "Câu 4: Khi Vy nói \"em đói\", bé nghĩ em muốn ăn gì?",
-        options: {
-          A: "Muốn ăn Mỳ Cay",
-          B: "Muốn ăn Phở",
-          C: "Muốn ăn Cơm",
-          D: "Muốn ăn KonJac"
-        },
-        correct: ["A"]
-      },
-      {
-        question: "Câu 5: Điều Vy hay nói nhất với em là gì?",
-        options: {
-          A: "Vy nhớ Ntrann",
-          B: "Trân đang làm gì đấy?",
-          C: "chuii giận mí người roiii",
-          D: "đghecccccc"
-        },
-        correct: ["A"]
-      },
-      {
-        question: "Câu 6: Khi Vy giận, dấu hiệu đầu tiên là gì?",
-        options: {
-          A: "Ít nói hơn",
-          B: "Sao cũng được",
-          C: "Kệ tao",
-          D: "Nói rất nhiều"
-        },
-        correct: ["B"]
-      },
-      {
-        question: "Câu 7: Vy thường phản ứng thế nào khi được khen?",
-        options: {
-          A: "ngại",
-          B: "Giả vờ không quan tâm",
-          C: "tao biếtt thừa",
-          D: "Aii hỏi"
-        },
-        correct: ["D"]
-      },
-      {
-        question: "Câu 8: Nếu được chọn một chuyến đi cùng em, Vy muốn đi đâu?",
-        options: {
-          A: "Đà Lạt",
-          B: "Đà Nẵng",
-          C: "Hàn Quốc",
-          D: "Một nơi riêng mà em từng kể"
-        },
-        correct: ["C"]
-      },
-      {
-        question: "Câu 9: Khánh Vy sinh ngày nào?",
-        options: {
-          A: "23/4/2006",
-          B: "23/6/2005",
-          C: "23/6/2006",
-          D: "26/3/2006"
-        },
-        correct: ["C"]
-      },
-      {
-        question: "Câu 10: Nếu một ngày em có tất cả mọi thứ trong tay, nhưng lại không còn Vy bên cạnh, em có nghĩ mình vẫn là người hạnh phúc không?",
-        options: {
-          A: "Có, vì em vẫn còn rất nhiều thứ khác.",
-          B: "Không, vì thiếu Vy thì mọi thứ đều không trọn vẹn.",
-          C: "Em sẽ tìm mọi cách để có Vy trong cuộc đời mình.",
-          D: "Em không cần có tất cả, Em chỉ muốn cùng Vy có một cuộc đời bình yên."
-        },
-        correct: ["B", "C", "D"]
+        question: "Câu 3: Màu sắc nào hợp với Vy nhất?",
+        options: ["Hồng pastel", "Xanh dương", "Trắng kem", "Tím nhạt"],
+        answer: 0
       }
     ];
 
-    const startScreen = document.getElementById("start-screen");
     const quizScreen = document.getElementById("quiz-screen");
-    const resultScreen = document.getElementById("result-screen");
-
-    const startBtn = document.getElementById("start-btn");
+    const journeyScreen = document.getElementById("journey-screen");
+    const questionCounterEl = document.getElementById("question-counter");
+    const scoreCounterEl = document.getElementById("score-counter");
+    const questionTextEl = document.getElementById("question-text");
+    const optionsListEl = document.getElementById("options-list");
     const nextBtn = document.getElementById("next-btn");
+    const openJourneyBtn = document.getElementById("open-journey-btn");
+    const finalScoreEl = document.getElementById("final-score");
+    const resultCommentEl = document.getElementById("result-comment");
     const replayBtn = document.getElementById("replay-btn");
-
-    const questionCounter = document.getElementById("question-counter");
-    const liveScore = document.getElementById("live-score");
-    const progressFill = document.getElementById("progress-fill");
-    const questionText = document.getElementById("question-text");
-    const optionsList = document.getElementById("options-list");
-
-    const finalScoreBadge = document.getElementById("final-score-badge");
-    const resultSub = document.getElementById("result-sub");
-    const heartsLayer = document.getElementById("hearts-layer");
 
     let currentIndex = 0;
     let score = 0;
-    let answered = false;
-    let heartInterval = null;
+    let selectedOption = null;
 
-    function switchScreen(target) {
-      [startScreen, quizScreen, resultScreen].forEach((sec) => {
-        sec.classList.remove("active");
-      });
-      target.classList.add("active");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    function switchScreen(targetScreen) {
+      quizScreen.classList.remove("active");
+      journeyScreen.classList.remove("active");
+      targetScreen.classList.add("active");
     }
 
     function renderQuestion() {
-      answered = false;
+      const currentQ = questions[currentIndex];
+      selectedOption = null;
       nextBtn.disabled = true;
-      nextBtn.textContent = currentIndex === questions.length - 1 ? "Mở thư của Vy" : "Câu tiếp theo";
+      nextBtn.textContent = currentIndex === questions.length - 1 ? "Hoàn thành" : "Câu tiếp theo";
 
-      const q = questions[currentIndex];
-      questionCounter.textContent = `Câu ${currentIndex + 1} / ${questions.length}`;
-      liveScore.textContent = `Đúng: ${score}/${questions.length}`;
-      progressFill.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
-      questionText.textContent = q.question;
+      questionCounterEl.textContent = `Câu ${currentIndex + 1} / ${questions.length}`;
+      scoreCounterEl.textContent = `Điểm: ${score}`;
+      questionTextEl.textContent = currentQ.question;
+      optionsListEl.innerHTML = "";
 
-      optionsList.innerHTML = "";
-      ["A", "B", "C", "D"].forEach((key) => {
+      currentQ.options.forEach((optText, idx) => {
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "option-btn";
-        btn.dataset.key = key;
-
-        const keySpan = document.createElement("span");
-        keySpan.className = "option-key";
-        keySpan.textContent = key;
-
-        const labelSpan = document.createElement("span");
-        labelSpan.className = "option-label";
-        labelSpan.textContent = q.options[key];
-
-        btn.appendChild(keySpan);
-        btn.appendChild(labelSpan);
-        btn.addEventListener("click", () => handleSelect(key, btn));
-        optionsList.appendChild(btn);
+        btn.textContent = optText;
+        btn.addEventListener("click", () => {
+          selectedOption = idx;
+          document.querySelectorAll(".option-btn").forEach((el) => el.classList.remove("selected"));
+          btn.classList.add("selected");
+          nextBtn.disabled = false;
+        });
+        optionsListEl.appendChild(btn);
       });
     }
 
-    function handleSelect(selectedKey, selectedBtn) {
-      if (answered) return;
-      answered = true;
-
-      const q = questions[currentIndex];
-      const isCorrect = q.correct.includes(selectedKey);
-      if (isCorrect) {
-        score += 1;
-        liveScore.textContent = `Đúng: ${score}/${questions.length}`;
-      }
-
-      const allOptionBtns = optionsList.querySelectorAll(".option-btn");
-      allOptionBtns.forEach((btn) => {
-        const k = btn.dataset.key;
-        btn.disabled = true;
-
-        if (q.correct.includes(k)) {
-          btn.classList.add("correct");
-        } else if (btn === selectedBtn && !isCorrect) {
-          btn.classList.add("wrong");
-        } else {
-          btn.classList.add("dimmed");
-        }
-      });
-
-      nextBtn.disabled = false;
+    function openJourney() {
+      finalScoreEl.textContent = `${score} / ${questions.length}`;
+      resultCommentEl.textContent =
+        score === questions.length
+          ? "Quá đỉnh! Bé hiểu Vy chuẩn từng milimet luôn!"
+          : "Xong trắc nghiệm rồi, bấm máy bay để Ntran tới bên Kvy nhé!";
+      switchScreen(journeyScreen);
     }
-
-    function spawnHeart() {
-      const symbols = ["♡", "♥", "❤", "❥"];
-      const heart = document.createElement("span");
-      heart.className = "falling-heart";
-      heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-
-      const left = Math.random() * 100;
-      const size = 14 + Math.random() * 14;
-      const duration = 5.5 + Math.random() * 4.5;
-      const drift = (Math.random() - 0.5) * 90;
-      const spin = (Math.random() - 0.5) * 70;
-
-      heart.style.left = `${left}%`;
-      heart.style.fontSize = `${size}px`;
-      heart.style.setProperty("--drift", `${drift}px`);
-      heart.style.setProperty("--spin", `${spin}deg`);
-      heart.style.animationDuration = `${duration}s`;
-
-      heartsLayer.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, duration * 1000 + 200);
-    }
-
-    function startHeartRain() {
-      stopHeartRain();
-      for (let i = 0; i < 8; i++) {
-        setTimeout(spawnHeart, i * 220);
-      }
-      heartInterval = setInterval(spawnHeart, 650);
-    }
-
-    function stopHeartRain() {
-      if (heartInterval) {
-        clearInterval(heartInterval);
-        heartInterval = null;
-      }
-      heartsLayer.innerHTML = "";
-    }
-
-    function showResult() {
-      finalScoreBadge.textContent = `Bé trả lời đúng ${score}/${questions.length} câu`;
-
-      if (score >= 8) {
-        resultSub.textContent = "Quá hiểu Vy luôn rồi nè, thương bé lắm!";
-      } else if (score >= 5) {
-        resultSub.textContent = "Khá là hiểu Vy rồi đó, còn vài chi tiết nhỏ xíu thôi!";
-      } else {
-        resultSub.textContent = "Trật vài câu cũng không sao, có bức thư này để bé hiểu Vy hơn nè!";
-      }
-
-      switchScreen(resultScreen);
-      startHeartRain();
-    }
-
-    startBtn.addEventListener("click", () => {
-      currentIndex = 0;
-      score = 0;
-      stopHeartRain();
-      switchScreen(quizScreen);
-      renderQuestion();
-    });
 
     nextBtn.addEventListener("click", () => {
-      if (!answered) return;
-      if (currentIndex < questions.length - 1) {
-        currentIndex += 1;
+      if (selectedOption === null) return;
+      if (selectedOption === questions[currentIndex].answer) {
+        score += 1;
+      }
+      currentIndex += 1;
+      if (currentIndex < questions.length) {
         renderQuestion();
       } else {
-        showResult();
+        openJourney();
       }
     });
 
-    replayBtn.addEventListener("click", () => {
-      currentIndex = 0;
-      score = 0;
-      stopHeartRain();
-      switchScreen(quizScreen);
-      renderQuestion();
-    });(function () {
-  const openBtn = document.getElementById("open-journey-btn");
-  const sceneEl = document.getElementById("journey-scene");
-  const pathEl = document.getElementById("flight-path");
-  const planeEl = document.getElementById("plane-btn");
-  const rotatorEl = document.getElementById("plane-rotator");
-  const pulseEl = document.querySelector(".plane-pulse");
-  const hintEl = document.getElementById("flight-hint");
-  const msgEl = document.getElementById("arrival-message");
-  const ntranEl = document.getElementById("ntran-group");
+    openJourneyBtn.addEventListener("click", () => {
+      openJourney();
+    });
 
+    // Khối điều khiển chuyến bay và nhân vật Ntran
+    (function () {
+      const pathEl = document.getElementById("flight-path");
+      const planeEl = document.getElementById("plane-btn");
+      const rotatorEl = document.getElementById("plane-rotator");
+      const hintEl = document.getElementById("flight-hint");
+      const msgEl = document.getElementById("arrival-message");
+      const ntranEl = document.getElementById("ntran-group");
+      const replayFlightBtn = document.getElementById("replay-flight-btn");
 
-  
-function resetNtranPos() {
-  if (!ntranEl) return;
-  ntranEl.style.transition = "transform 0.5s ease";
-  ntranEl.setAttribute("transform", "translate(115, 235)");
-}
-  const replayFlightBtn = document.getElementById("replay-flight-btn");
+      if (!pathEl || !planeEl || !rotatorEl) return;
 
-  if (!pathEl || !planeEl || !rotatorEl) return;
+      const totalLen = pathEl.getTotalLength();
+      const duration = 1800;
+      let isFlying = false;
+      let animId = null;
 
-  const totalLen = pathEl.getTotalLength();
-  let isFlying = false;
-  let animId = null;
+      function moveNtranToKvy() {
+        if (!ntranEl) return;
+        ntranEl.style.transition = "transform 0.7s ease";
+        ntranEl.setAttribute("transform", "translate(600, 235)");
+      }
 
-  function placeAt(progress) {
-    const clamped = Math.max(0, Math.min(1, progress));
-    const dist = clamped * totalLen;
-    const pt = pathEl.getPointAtLength(dist);
-    const delta = 2;
-    const p1 = pathEl.getPointAtLength(Math.max(0, dist - delta));
-    const p2 = pathEl.getPointAtLength(Math.min(totalLen, dist + delta));
-    const angleDeg = (Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180) / Math.PI;
+      function resetNtranPos() {
+        if (!ntranEl) return;
+        ntranEl.style.transition = "transform 0.5s ease";
+        ntranEl.setAttribute("transform", "translate(115, 235)");
+      }
 
-    planeEl.setAttribute("transform", `translate(${pt.x.toFixed(1)}, ${pt.y.toFixed(1)})`);
-    rotatorEl.setAttribute("transform", `rotate(${angleDeg.toFixed(1)})`);
-  }
+      function placeAt(progress) {
+        const clamped = Math.max(0, Math.min(1, progress));
+        const dist = clamped * totalLen;
+        const pt = pathEl.getPointAtLength(dist);
+        const delta = 2;
+        const p1 = pathEl.getPointAtLength(Math.max(0, dist - delta));
+        const p2 = pathEl.getPointAtLength(Math.min(totalLen, dist + delta));
+        const angleDeg = (Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180) / Math.PI;
 
-  function startFlight() {
-    if (isFlying) return;
-    isFlying = true;
-    if (msgEl) msgEl.hidden = true;
-    if (replayFlightBtn) replayFlightBtn.hidden = true;
-    if (pulseEl) pulseEl.style.display = "none";
-    if (hintEl) hintEl.textContent = "Máy bay đang bay từ Ntran tới Kvy...";
+        planeEl.setAttribute("transform", `translate(${pt.x}, ${pt.y})`);
+        rotatorEl.setAttribute("transform", `rotate(${angleDeg})`);
+      }
 
-    const duration = 2200;
-    const startTime = performance.now();
+      function startFlight() {
+        if (isFlying) return;
+        isFlying = true;
+        msgEl.textContent = "";
+        hintEl.textContent = "Máy bay đang bay tới Kvy...";
 
-    function step(now) {
-      const elapsed = now - startTime;
-      const t = Math.min(1, elapsed / duration);
-      const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-      placeAt(eased);
+        const startTime = performance.now();
 
-      if (t < 1) {
+        function step(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(1, elapsed / duration);
+          placeAt(progress);
+
+          if (progress < 1) {
+            animId = requestAnimationFrame(step);
+          } else {
+            isFlying = false;
+            hintEl.textContent = "Đã hạ cánh an toàn!";
+            msgEl.textContent = "Ntran đã tới đứng kế Kvy rồi nè!";
+            moveNtranToKvy();
+          }
+        }
+
         animId = requestAnimationFrame(step);
-      } else {
-        placeAt(1);
-        moveNtranToKvy();
-        isFlying = false;
-        if (hintEl) hintEl.textContent = "Đã tới nơi rồi nè ✨";
-        if (msgEl) msgEl.hidden = false;
-        if (replayFlightBtn) replayFlightBtn.hidden = false;
       }
-    }
 
-    cancelAnimationFrame(animId);
-    animId = requestAnimationFrame(step);
-  }
+      function resetFlight() {
+        if (animId) {
+          cancelAnimationFrame(animId);
+          animId = null;
+        }
+        isFlying = false;
+        placeAt(0);
+        resetNtranPos();
+        msgEl.textContent = "";
+        hintEl.textContent = "Bấm vào máy bay để bắt đầu chuyến bay tới Kvy!";
+      }
 
-  function resetFlight() {
-    cancelAnimationFrame(animId);
-    isFlying = false;
-    if (msgEl) msgEl.hidden = true;
-    if (replayFlightBtn) replayFlightBtn.hidden = true;
-    if (pulseEl) pulseEl.style.display = "";
-    if (hintEl) hintEl.textContent = "Bấm vào chiếc máy bay để cất cánh nha bé ✨";
-    placeAt(0);
-    resetNtranPos();
-  }
+      planeEl.addEventListener("click", startFlight);
+      if (replayFlightBtn) {
+        replayFlightBtn.addEventListener("click", resetFlight);
+      }
 
-  if (openBtn && sceneEl) {
-    openBtn.addEventListener("click", function () {
-      sceneEl.style.display = "block";
+      if (replayBtn) {
+        replayBtn.addEventListener("click", () => {
+          resetFlight();
+          currentIndex = 0;
+          score = 0;
+          switchScreen(quizScreen);
+          renderQuestion();
+        });
+      }
+
       placeAt(0);
-      sceneEl.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  }
+    })();
 
-  planeEl.addEventListener("click", startFlight);
-  planeEl.addEventListener("keydown", function (e) {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      startFlight();
-    }
-  });
-  if (replayFlightBtn) replayFlightBtn.addEventListener("click", resetFlight);
-
-  placeAt(0);
-})();
+    renderQuestion();
   </script>
 </body>
 </html>
